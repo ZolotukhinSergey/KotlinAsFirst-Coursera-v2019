@@ -55,6 +55,8 @@ class Tests {
         assertTrue(circleInside(2.0, 2.0, 2.0, 2.0, 2.0, 2.0))
         assertTrue(circleInside(-2.0, 3.0, 2.0, -2.0, 0.0, 5.0))
         assertFalse(circleInside(1.0, 2.0, 3.0, 4.0, 5.0, 6.0))
+        assertFalse(circleInside(1.0, 1.0, 1.0, 0.0, 0.0, 0.1))
+        assertFalse(circleInside(0.0, 0.0, 0.1, -632.0, 0.5062742805370942, 47.72046349852233))
     }
 
     @Test
@@ -64,5 +66,6 @@ class Tests {
         assertTrue(brickPasses(4, 4, 4, 4, 4))
         assertFalse(brickPasses(6, 5, 4, 3, 6))
         assertTrue(brickPasses(3, 2, 1, 1, 2))
+        assertTrue(brickPasses(1, 1, 2, 1, 1))
     }
 }

@@ -60,7 +60,7 @@ fun daysInMonth(month: Int, year: Int): Int = when (month) {
 fun circleInside(
     x1: Double, y1: Double, r1: Double,
     x2: Double, y2: Double, r2: Double
-): Boolean = (x2 - x1) + (y2 - y1) <= r2 - r1
+): Boolean = abs(x2 - x1) + abs(y2 - y1) <= abs(r2 - r1) && r2 >= r1
 
 /**
  * Средняя
@@ -71,4 +71,5 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = min(a, b) <= r && c <= s || c <= r && min(a, b) <= s
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean =
+    a <= r && b <= s || a <= r && c <= s || b <= r && c <= s || b <= r && a <= s || c <= r && a <= s || c <= r && b <= s
