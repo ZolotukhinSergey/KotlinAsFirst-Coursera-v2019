@@ -84,8 +84,11 @@ class Tests {
         assertEquals(102334155, fib(40))
         assertEquals(1134903170, fib(45))
         assertEquals(1836311903, fib(46))
-        // Just to calculate it
-        fib(50)
+        // получаются слишком большие числа для типа Int нужно менять тип возвращаемый функцией на Long
+        assertEquals(2971215073, fib(47L))
+        assertEquals(4807526976, fib(48L))
+        assertEquals(7778742049, fib(49L))
+        assertEquals(12586269025, fib(50L))
     }
 
     @Test
