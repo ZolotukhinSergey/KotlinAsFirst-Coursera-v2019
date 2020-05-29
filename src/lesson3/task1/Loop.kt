@@ -77,9 +77,23 @@ fun digitNumber(n: Int): Int = if (n < 10) 1 else 1 + digitNumber(n / 10)
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = if (n in 1..2) 1 else fib(n - 2) + fib(n - 1)
+fun fib(n: Int): Int {
+    val list: ArrayList<Int> = arrayListOf()
+    for (i in 1..n) {
+        if (i in 1..2) list.add(1)
+        else list.add(list[list.size - 2] + list.last())
+    }
+    return list.last()
+}
 
-fun fib(n: Long): Long = if (n in 1..2) 1 else fib(n - 2) + fib(n - 1)
+fun fib(n: Long): Long {
+    val list: ArrayList<Long> = arrayListOf()
+    for (i in 1..n) {
+        if (i in 1..2) list.add(1)
+        else list.add(list[list.size - 2] + list.last())
+    }
+    return list.last()
+}
 
 /**
  * Простая
