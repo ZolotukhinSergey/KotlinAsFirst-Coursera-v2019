@@ -69,7 +69,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = if (n < 10) 1 else 1 + digitNumber(n / 10)
+fun digitNumber(n: Int): Int = if (abs(n) < 10) 1 else 1 + digitNumber(n / 10)
 
 /**
  * Простая
@@ -281,8 +281,8 @@ fun isPalindrome(n: Int): Boolean {
     } while (a > 0)
     while (list.size > 1) {
         if (list.first() != list.last()) return false
-        list.remove(list.first())
-        list.remove(list.last())
+        list.removeAt(0)
+        list.removeAt(list.size - 1)
     }
     return true
 }
