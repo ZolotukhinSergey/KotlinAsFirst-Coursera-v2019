@@ -185,6 +185,7 @@ class Tests {
         assertEquals(listOf(1, 2, 1, 0), convert(100, 4))
         assertEquals(listOf(1, 3, 12), convert(250, 14))
         assertEquals(listOf(2, 14, 12), convert(1000, 19))
+        assertEquals(listOf(10, 0, 2, 2, 2, 0, 2, 8, 1), convert(Int.MAX_VALUE, 11))
     }
 
     @Test
