@@ -102,8 +102,9 @@ fun fib(n: Long): Long {
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var k: Int = max(m, n)
-    while (k % m != 0 || k % n != 0) k++
+    val min = min(m, n)
+    var k: Int = min
+    while (k % m != 0 || k % n != 0) k += min
     return k
 }
 
@@ -201,7 +202,7 @@ fun sin(x: Double, eps: Double): Double {
     var result: Double = x
     if (x >= PI / 2.0) {
         y = x % (PI / 2.0)
-        y = if (abs(y) <= 1e-13) 0.0 else y
+        y = if (abs(y) <= eps) 0.0 else y
         result = abs(floor(x / (PI / 2.0)))
         result = if (result % 2.0 == 0.0 && y == 0.0) 0.0 else if (result % 4.0 >= 2.0) -1.0 else 1.0
         if (y == 0.0) return result else result *= y
@@ -230,7 +231,7 @@ fun cos(x: Double, eps: Double): Double {
     var result = 1.0
     if (x >= PI / 2.0) {
         y = x % (PI / 2.0)
-        y = if (abs(y) <= 1e-13) 0.0 else y
+        y = if (abs(y) <= eps) 0.0 else y
         result = abs(floor(x / (PI / 2.0)))
         result = if (result % 2.0 != 0.0 && y == 0.0) 0.0 else if (result % 4.0 in 1.0..3.0) -1.0 else 1.0
         if (y == 0.0) return result else result *= y
