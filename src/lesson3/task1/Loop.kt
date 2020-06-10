@@ -206,14 +206,14 @@ fun sin(x: Double, eps: Double): Double {
         result = abs(floor(x / (PI / 2.0)))
         result = if (result % 2.0 == 0.0 && y == 0.0) 0.0 else if (result % 4.0 >= 2.0) -1.0 else 1.0
         if (y == 0.0) return result else result *= y
-        println("y = $y  floor = ${floor(x / (PI / 2.0))}  result = $result  x = $x")
+        //println("y = $y  floor = ${floor(x / (PI / 2.0))}  result = $result  x = $x")
     }
     var nextStep: Double = result
     var i = 1
     while (abs(nextStep) > eps) {
         nextStep = (if (i % 2 == 0) 1.0 else -1.0) * y.pow(i.toDouble() * 2.0 + 1.0) / factorial(i * 2 + 1)
         result += nextStep
-        println("nextStep = $nextStep  y^ = ${y.pow(i.toDouble() * 2.0 + 1.0)}  fac = ${factorial(i * 2 + 1)}  result = $result  i = $i")
+        //println("nextStep = $nextStep  y^ = ${y.pow(i.toDouble() * 2.0 + 1.0)}  fac = ${factorial(i * 2 + 1)}  result = $result  i = $i")
         i++
     }
     return result
