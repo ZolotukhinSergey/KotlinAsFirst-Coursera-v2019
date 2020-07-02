@@ -323,12 +323,39 @@ class Tests {
             )
         )
         assertEquals(
+            setOf("Кубок"),
+            bagPacking(
+                mapOf("Кубок" to (2 to 148), "Слиток" to (1 to 77), "шмит" to (1 to 1)),
+                2
+            )
+        )
+        assertEquals(
             emptySet<String>(),
             bagPacking(
                 mapOf("Кубок" to (500 to 2000), "Слиток" to (1000 to 5000)),
                 450
             )
         )
+        assertEquals(
+            setOf("14", "19"),
+            bagPacking(
+                mapOf(
+                    "0" to (2 to 308), "1" to (1 to 1), "2" to (1 to 1), "3" to (1 to 1), "4" to (1 to 1)
+                    , "5" to (1 to 1), "6" to (1 to 1), "7" to (1 to 1), "8" to (1 to 1), "9" to (1 to 1)
+                    , "10" to (1 to 1), "11" to (1 to 1), "12" to (1 to 1), "13" to (1 to 1), "14" to (1 to 253)
+                    , "15" to (1 to 1), "16" to (1 to 1), "17" to (1 to 1), "18" to (1 to 1), "19" to (1 to 149)
+                    , "20" to (1 to 1)
+                ),
+                2
+            )
+        )
+        /*
+         treasures -> {0={first=2, second=308}, 1={first=1, second=1}, 2={first=1, second=1}, 3={first=1, second=1}, 4={first=1, second=1}, 5={first=1, second=1}, 6={first=1, second=1}, 7={first=1, second=1}, 8={first=1, second=1}, 9={first=1, second=1}, 10={first=1, second=1}, 11={first=1, second=1}, 12={first=1, second=1}, 13={first=1, second=1}, 14={first=1, second=253}, 15={first=1, second=1}, 16={first=1, second=1}, 17={first=1, second=1}, 18={first=1, second=1}, 19={first=1, second=149}, 20={first=1, second=1}}, capacity -> 2
+Your output:
+  [0]
+Expected output:
+  [19, 14]
+         */
     }
 
     // TODO: map task tests

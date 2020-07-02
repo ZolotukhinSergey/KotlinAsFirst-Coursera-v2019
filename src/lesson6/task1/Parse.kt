@@ -2,6 +2,7 @@
 
 package lesson6.task1
 
+
 /**
  * Пример
  *
@@ -42,8 +43,8 @@ fun timeSecondsToStr(seconds: Int): String {
 /**
  * Пример: консольный ввод
  */
-fun main() {
-    println("Введите время в формате ЧЧ:ММ:СС")
+/*fun main() {
+   /* println("Введите время в формате ЧЧ:ММ:СС")
     val line = readLine()
     if (line != null) {
         val seconds = timeStrToSeconds(line)
@@ -54,8 +55,10 @@ fun main() {
         }
     } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
-    }
+    }*/
+    println(plusMinus("+2"))
 }
+ */
 
 
 /**
@@ -69,7 +72,79 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    var part = str.split(" ")
+    if (part.size != 3) return ""
+    var kol: Int
+    var year: Int
+    try {
+        year = part[2].toInt()
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    val mount = when (part[1]) {
+        "января" -> {
+            kol = 31
+            "01"
+        }
+        "февраля" -> {
+            kol = when {
+                year % 400 == 0 -> 29
+                year % 100 == 0 -> 28
+                year % 4 == 0 -> 29
+                else -> 28
+            }
+            "02"
+        }
+        "марта" -> {
+            kol = 31
+            "03"
+        }
+        "апреля" -> {
+            kol = 30
+            "04"
+        }
+        "мая" -> {
+            kol = 31
+            "05"
+        }
+        "июня" -> {
+            kol = 30
+            "06"
+        }
+        "июля" -> {
+            kol = 31
+            "07"
+        }
+        "августа" -> {
+            kol = 31
+            "08"
+        }
+        "сентября" -> {
+            kol = 30
+            "09"
+        }
+        "октября" -> {
+            kol = 31
+            "10"
+        }
+        "ноября" -> {
+            kol = 30
+            "11"
+        }
+        "декабря" -> {
+            kol = 31
+            "12"
+        }
+        else -> return ""
+    }
+    try {
+        if (part[0].toInt() > kol) return ""
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    return "${if (part[0].length == 1) "0" + part[0] else part[0]}.${mount}.${part[2]}"
+}
 
 /**
  * Средняя
@@ -81,7 +156,87 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    var part = digital.split(".")
+    if (part.size != 3) return ""
+    var kol: Int
+    var year: Int
+    try {
+        year = part[2].toInt()
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    val mount: Int
+    try {
+        mount = part[1].toInt()
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    val mountString = when (mount) {
+        1 -> {
+            kol = 31
+            "января"
+        }
+        2 -> {
+            kol = when {
+                year % 400 == 0 -> 29
+                year % 100 == 0 -> 28
+                year % 4 == 0 -> 29
+                else -> 28
+            }
+            "февраля"
+        }
+        3 -> {
+            kol = 31
+            "марта"
+        }
+        4 -> {
+            kol = 30
+            "апреля"
+        }
+        5 -> {
+            kol = 31
+            "мая"
+        }
+        6 -> {
+            kol = 30
+            "июня"
+        }
+        7 -> {
+            kol = 31
+            "июля"
+        }
+        8 -> {
+            kol = 31
+            "августа"
+        }
+        9 -> {
+            kol = 30
+            "сентября"
+        }
+        10 -> {
+            kol = 31
+            "октября"
+        }
+        11 -> {
+            kol = 30
+            "ноября"
+        }
+        12 -> {
+            kol = 31
+            "декабря"
+        }
+        else -> return ""
+    }
+    var day: Int
+    try {
+        day = part[0].toInt()
+        if (day > kol) return ""
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    return "$day $mountString $year"
+}
 
 /**
  * Средняя
@@ -133,7 +288,28 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int = TODO()
+fun plusMinus(expression: String): Int {
+    val part = expression.split(" ")
+    var result = 0
+    var a: Int
+    var operator = "+"
+    for (i in part.indices) {
+        when {
+            i in part.indices step 2 -> {
+                if ("+" in part[i] || "-" in part[i]) throw IllegalArgumentException("Нарушен формат входной строки")
+                try {
+                    a = part[i].toInt()
+                    result += if (operator == "+") a else -a
+                } catch (e: NumberFormatException) {
+                    throw IllegalArgumentException("Нарушен формат входной строки")
+                }
+            }
+            part[i] in "-+" -> operator = part[i]
+            else -> throw IllegalArgumentException("Нарушен формат входной строки")
+        }
+    }
+    return result
+}
 
 /**
  * Сложная
@@ -208,4 +384,16 @@ fun fromRoman(roman: String): Int = TODO()
  * IllegalArgumentException должен бросаться даже если ошибочная команда не была достигнута в ходе выполнения.
  *
  */
-fun computeDeviceCells(cells: Int, commands: String, limit: Int): List<Int> = TODO()
+fun computeDeviceCells(cells: Int, commands: String, limit: Int): List<Int> {
+    val result = mutableListOf<Int>()
+
+    if (Regex("""[^\s+-\[>\]<]""").find(commands) != null) throw IllegalArgumentException("Содержится не известная команда")
+    val matchResult = Regex("""\[.*\]""").replace(commands, "")
+    if (matchResult.contains(Regex("""\[|\]"""))) throw IllegalArgumentException("Не верно заданы скобки")
+
+    return result
+}
+
+fun main() {
+    println(computeDeviceCells(10, "+>+1>+>+>+", 10))
+}
